@@ -16,7 +16,7 @@ $ go run .
 
 ### How to play with the API
 
-Open another terminal and first post some data (_httpie_ is used as an example):
+Open another terminal and first post some data (_httpie_ is used in the example):
 
 ```
 $ http POST http://localhost:8080 record:='{"value": "TGV0J3MgR28gIzEK"}'
@@ -47,4 +47,22 @@ Date: Wed, 16 Feb 2022 20:23:46 GMT
         "value": "TGV0J3MgR28gIzEK"
     }
 }
+```
+
+## How to compile proto files
+
+First, you need to install protobuf runtime to be used. Please follow the official guide [Compiling your protocol buffers](https://developers.google.com/protocol-buffers/docs/gotutorial#compiling-your-protocol-buffers).
+
+In short:
+
+1. Install the _protoc_ compiler itself (e.g., in Arch Linux you can install _extra/protobuf_ package).
+2. Install runtime `go install google.golang.org/protobuf/cmd/protoc-gen-go@latest`.
+
+Having compiler installed, do from the root of the repo:
+
+```
+$ protoc api/v1/*.proto \
+    --go_out=. \
+    --go_opt=paths=source_relative \
+    --proto_path=.
 ```
