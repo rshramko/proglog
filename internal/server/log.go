@@ -6,12 +6,12 @@ import (
 )
 
 type Record struct {
-	Value []byte `json:"value"`
+	Value  []byte `json:"value"`
 	Offset uint64 `json:"offset"`
 }
 
 type Log struct {
-	mu sync.Mutex
+	mu      sync.Mutex
 	records []Record
 }
 
