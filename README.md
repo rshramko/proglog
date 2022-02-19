@@ -57,12 +57,15 @@ In short:
 
 1. Install the _protoc_ compiler itself (e.g., in Arch Linux you can install _extra/protobuf_ package).
 2. Install runtime `go install google.golang.org/protobuf/cmd/protoc-gen-go@latest`.
+3. Install grpc runtime `go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest`.
 
 Having compiler installed, do from the root of the repo:
 
 ```
 $ protoc api/v1/*.proto \
     --go_out=. \
+    --go-grpc_out=. \
     --go_opt=paths=source_relative \
+    --go-grpc_opt=paths=source_relative \
     --proto_path=.
 ```
