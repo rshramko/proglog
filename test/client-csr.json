@@ -1,0 +1,17 @@
+{
+  "CN": "client",
+  "hosts": [""],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "NL",
+      "L": "Eindhoven",
+      "S": "Noord-Brabant",
+      "O": "Horns and Hooves Inc",
+      "OU": "Distributes Services"
+    }
+  ]
+}
