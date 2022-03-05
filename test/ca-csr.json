@@ -1,0 +1,16 @@
+{
+  "CN": "Demo CA",
+  "key": {
+    "algo": "rsa",
+    "size": 4096
+  },
+  "names": [
+    {
+      "C": "NL",
+      "L": "Eindhoven",
+      "S": "Noord-Brabant",
+      "O": "Horns and Hooves Inc",
+      "OU": "CA Services"
+    }
+  ]
+}
