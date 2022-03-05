@@ -21,12 +21,12 @@ type grpcServer struct {
 	*Config
 }
 
-var _ api.LogServer = (*grpcServer) (nil)
+var _ api.LogServer = (*grpcServer)(nil)
 
-func NewGRPCServer (config *Config) (*grpc.Server, error) {
+func NewGRPCServer(config *Config) (*grpc.Server, error) {
 	gsrv := grpc.NewServer()
 	srv, err := newGrpcServer(config)
-	if (err != nil) {
+	if err != nil {
 		return nil, err
 	}
 	api.RegisterLogServer(gsrv, srv)
@@ -79,7 +79,7 @@ func (s *grpcServer) ProduceStream(stream api.Log_ProduceStreamServer) error {
 func (s *grpcServer) ConsumeStream(req *api.ConsumeRequest, stream api.Log_ConsumeStreamServer) error {
 	for {
 		select {
-		case <- stream.Context().Done():
+		case <-stream.Context().Done():
 			return nil
 		default:
 			res, err := s.Consume(stream.Context(), req)

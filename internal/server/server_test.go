@@ -13,10 +13,10 @@ import (
 )
 
 func TestServer(t *testing.T) {
-	for scenario, fn := range map[string]func(t *testing.T, client api.LogClient, config *Config) {
+	for scenario, fn := range map[string]func(t *testing.T, client api.LogClient, config *Config){
 		"produce/consume a message to/from the log succeeds": testProduceConsume,
-		"produce/consume stream successds": testProduceConsumeStream,
-		"consume past log boundry fails": testConsumePastBoundary,
+		"produce/consume stream successds":                   testProduceConsumeStream,
+		"consume past log boundry fails":                     testConsumePastBoundary,
 	} {
 		t.Run(scenario, func(t *testing.T) {
 			client, config, teardown := setupTest(t, nil)
@@ -42,7 +42,7 @@ func setupTest(t *testing.T, fn func(*Config)) (client api.LogClient, cfg *Confi
 	clog, err := log.NewLog(dir, log.Config{})
 	require.NoError(t, err)
 
-	cfg = &Config {
+	cfg = &Config{
 		CommitLog: clog,
 	}
 
@@ -115,10 +115,10 @@ func testProduceConsumeStream(t *testing.T, client api.LogClient, config *Config
 	ctx := context.Background()
 
 	records := []*api.Record{{
-		Value: []byte("first message"),
+		Value:  []byte("first message"),
 		Offset: 0,
 	}, {
-		Value: []byte("second message"),
+		Value:  []byte("second message"),
 		Offset: 1,
 	}}
 
@@ -153,7 +153,7 @@ func testProduceConsumeStream(t *testing.T, client api.LogClient, config *Config
 			res, err := stream.Recv()
 			require.NoError(t, err)
 			require.Equal(t, res.Record, &api.Record{
-				Value: record.Value,
+				Value:  record.Value,
 				Offset: uint64(i),
 			})
 		}
