@@ -28,3 +28,7 @@ compile:
 .PHONY: test
 test:
 	go test -race ./...
+
+.PHONY: fmt
+fmt:
+	find . -name '*.go' -type f -exec go fmt "{}" \;
